@@ -12,6 +12,9 @@ Note : This will work only in firefox browser because it supports Cross origin r
 
 Always happy to help you :smiley:.
 
+
+Thanks to [Momciloo!](https://codepen.io/Momciloo) for awesome chatbox UI.
+
 Do you have any queries or want to add some more functionallity So feel free to contact me -
 
 Facebook : https://www.facebook.com/sumit.patidar.77 Gmail : patidar.sumit1110@gmail.com

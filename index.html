@@ -1,0 +1,135 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="script.js"></script>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+
+<body>
+
+<div ng-app="myApp" ng-controller="myController">
+
+<div class="wrapper">
+
+<div class="container">
+	<div class="left">
+		<div class="top">
+
+			
+			<img ng-click="showProfile=true" src="{{profile.profile_pic_url}}" style="border-radius: 50%;" alt="profile pic">	
+			<span class="username">{{profile.username}}</span>
+			<hr style="color:#eceff1;opacity:0.6">
+			<input type="text" placeholder="Search" ng-model="friendName">
+			
+		</div>
+		<ul class="people">
+			<li class="person" ng-class="(activeChat == message?'active':'')"data-chat="person1" ng-repeat="message in messages | filter :  friendName" ng-click="openChat(message);">
+			{{}}
+			<img src="profilePic.png" alt="">
+			<span class="name">{{message.participants[0]!=profile.username?message.participants[0]:message.participants[1]}}</span>
+			<span class="time">{{message.conversation[0].created_at | date :'shortTime'}}</span>
+			<span class="preview">{{message.conversation[0].text | limitTo:15}}...</span>
+			</li>
+			
+		</ul>
+</div>
+	<div class="right">
+
+
+
+		<div ng-if="showProfile" class="myProfile"> 
+				<img src="{{profile.profile_pic_url}}" style="border-radius: 50%;" alt="profile pic">	
+				<span class="username" style="font-size:40px">{{profile.username}}</span>
+				<div style="margin:15px 10px">
+					<span class="gender">{{profile.gender | uppercase }}</span>
+					<span class="DOB">{{profile.date_of_birth | date : "dd-MMM-yyyy"}}</span>					
+					<span class="biography">{{profile.biography}}</span>
+					
+				</div>				
+		</div>
+
+
+
+
+		<div ng-if="!showProfile" class="top"><span> <span class="name" style="font-size:20px;font-weight:600;">{{activeChat.participants[0]!=profile.username?activeChat.participants[0]:activeChat.participants[1]}}</span></span></div>
+		<div ng-if="!showProfile" class="chat active-chat" id="activeWindow" data-chat="person1">
+			
+
+			
+
+			<div ng-repeat="chat in activeChat.conversation | orderBy : 'created_at'">
+				<div class="conversation-start" ng-if="writeDate(chat.created_at)" >
+					<span>{{chat.created_at | date : "dd-MMM-yyyy hh:mm a"}}</span>
+				</div>
+				<div class="bubble" ng-class="(chat.sender!=profile.username?'you':'me')" ng-mouseover="chat.showTime=true" ng-mouseleave="chat.showTime=false">
+					<span class="story-share" ng-if="chat.story_share">{{chat.story_share}}</span>
+					<p style="margin:0px"></p>
+					<div ng-if="chat.text"class="chat-text">					
+						<span >{{chat.text}}</span>
+					</div>
+					<div ng-if="!chat.text">
+						<div ng-if="chat.media_owner" class="media-owner">						
+							<img class="media-owner-profile-img" src="profilePic.png" alt="">
+							<span>{{chat.media_owner}}</span>
+						</div>
+						<div class="media-box">
+							<img   ng-if="chat.media_share_url" src="{{chat.media_share_url}}" alt="Can't Load Image">
+							<img   ng-if="chat.animated_media_images.preview_gif.url" src="{{chat.animated_media_images.preview_gif.url}}" alt="Can't Load Image">
+							<img   ng-if="chat.media" src="{{chat.media}}" alt="Can't Load Image">
+							<audio controls ng-if="chat.voice_media">
+							  <source src="{{chat.voice_media}}" type="audio/mp3">
+							Your browser does not support the audio element.
+							</audio>
+						</div>
+						<div ng-if="chat.media_share_caption" class="media-box-bottom">{{chat.media_share_caption}}</div>
+					</div>
+					<p style="margin:0px;"></p>
+					<small class="chatTime" ng-if="chat.showTime">{{chat.created_at | date :'shortTime'}}</small>
+				</div>
+			</div>
+
+
+
+
+		</div>
+		
+		
+	
+		
+		
+	<div class="write" style="display:none;">
+		<a href="javascript:;" class="write-link attach"></a>
+		<input type="text">
+		<a href="javascript:;" class="write-link smiley"></a>
+		<a href="javascript:;" class="write-link send"></a>
+	</div>
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+</html>

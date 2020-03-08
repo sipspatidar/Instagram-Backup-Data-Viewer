@@ -10,7 +10,11 @@ To make a backup of instagram chat is very difficult task for people. Some use s
 
 Note : This will work only in firefox browser because it supports Cross origin requests.
 
-Youtube Video Link : https://youtu.be/xiuD9Ebe_os
+Youtube Video Link : http://gestyy.com/w8FVQW
+
+UPDATED]
+Instagram Backup data viewer Android app is also available now
+Download Link - http://gestyy.com/w8EYw2
 
 Always happy to help you :smiley:.
 
